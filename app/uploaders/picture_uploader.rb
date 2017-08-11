@@ -6,7 +6,8 @@ class PictureUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [300, 300]
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog
+  if Rails.env.production?
+    storage :fog
   else
     storage :file
   end
